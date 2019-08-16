@@ -89,7 +89,8 @@ call <SID>AddAlternateExtensionMappingLowerAndUpperTwoTypes('cpp', 'cpp11', 'hpp
 call <SID>AddAlternateExtensionMappingLowerAndUpperTwoTypes('cpp', 'cpp11', 'hh', 'cc')
 call <SID>AddAlternateExtensionMappingLowerAndUpperTwoTypes('cpp', 'cpp11', 'cc', 'hh,h')
 " Mappings for Cuda
-call <SID>AddAlternateExtensionMappingLowerAndUpper('cuda', 'cu', 'h')
+call <SID>AddAlternateExtensionMappingLowerAndUpper('cuda', 'cu', 'cuh,h')
+call <SID>AddAlternateExtensionMappingLowerAndUpper('cuda', 'cuh', 'cu')
 " Mappings for OBJ-C and OBJ-C++
 call <SID>AddAlternateExtensionMappingLowerAndUpper('objc',  'm', 'h'   )
 call <SID>AddAlternateExtensionMappingLowerAndUpper('objcpp', 'mm', 'hh,h')
