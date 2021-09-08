@@ -37,6 +37,11 @@ if (!exists('g:strictAlternateMatching'))
 	let g:strictAlternateMatching = 0
 endif
 
+" If this is 1, there won't be any switch to another windows/tabpages.
+if (!exists('g:alternateDontReuseExisting'))
+	let g:alternateDontReuseExisting = 0
+endif
+
 let alternateExtensionsDict = {}
 
 " setup the default set of alternate extensions. The user can override in thier
@@ -628,7 +633,8 @@ endfunction
 "            doSplit (IN) -- indicates whether the window should be split
 "                            ("v", "h", "n", "v!", "h!", "n!", "t", "t!")
 "            useExisting (IN) -- indicate weather existing buffers should be
-"                                prefered
+"                                prefered (can be override with
+"                                g:alternateDontReuseExisting)
 " Returns  : nothing
 " Author   : Michael Sharpe <feline@irendi.com>
 " History  : + bufname() was not working very well with the possibly strange
@@ -644,7 +650,7 @@ function! <SID>FindOrCreateBuffer(fileName, doSplit, useExisting)
   let bufNr = -1
   let lastBuffer = bufnr("$")
   let i = 1
-  if (a:useExisting)
+  if (a:useExisting && !g:alternateDontReuseExisting)
      " find an existing buffer that actually matches the desired filename
      while i <= lastBuffer
        if <SID>EqualFilePaths(expand("#".i.":p"), a:fileName)
